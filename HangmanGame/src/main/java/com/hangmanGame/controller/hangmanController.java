@@ -48,6 +48,8 @@ public class hangmanController {
 		model.addAttribute("chances", chances);
 		if(chances == 0) {
 			return "hangmanGame0";
+		} else if(service.getCharactersToGuess() == 0){
+			return "winPage";
 		} else if(chances == 7) {
 			return "losePage";
 		} else {

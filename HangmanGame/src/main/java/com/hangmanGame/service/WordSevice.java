@@ -31,4 +31,7 @@ public class WordSevice {
 	public void setRandomWord() {
 		dao.setRandomWordJPA();
 	}
+	public int getCharactersToGuess() {
+		return dao.getCharactersToGuess();
+	}
 }

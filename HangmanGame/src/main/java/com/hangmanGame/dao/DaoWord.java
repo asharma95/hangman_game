@@ -15,6 +15,7 @@ public class DaoWord {
 	private Word word;
 	private String wordToDisplay;
 	HashMap<Character, List<Integer>> characterPositions;
+	private int charactersToGuess;
 	@Autowired
 	private WordJpaRepo repo;
 	
@@ -26,6 +27,7 @@ public class DaoWord {
 	}
 	public void setWord(Word word) {
 		this.word = word;
+		this.charactersToGuess = this.word.getWord().length();
 		this.wordToDisplay=IntStream.range(0, word.getWord().length()).mapToObj(i -> "_ ").collect(Collectors.joining(""));
 		characterPositions = new HashMap<Character, List<Integer>>();
 		for (int i = 0; i < word.getWord().length(); i++) {
@@ -51,6 +53,7 @@ public class DaoWord {
 		if(positions != null) {
 			for(Integer index : positions) {
 				string.setCharAt(index*2, character.charAt(0));
+				charactersToGuess--;
 			}
 			this.setWordToDisplay(string.toString());
 		} else {
@@ -63,9 +66,7 @@ public class DaoWord {
 	public void setRandomWordJPA() {
 		this.setWord(repo.getRandomField().get(0));
 	}
-
-	
-	
-	
-	
+	public int getCharactersToGuess() {
+		return charactersToGuess;
+	}
 }
