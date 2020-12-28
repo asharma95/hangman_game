@@ -25,7 +25,7 @@ public class hangmanController {
 		if(playerNum.equalsIgnoreCase("1")) {
 			service.setRandomWord();
 			model.addAttribute("word", service.getWord().getWord());
-			model.addAttribute("wordToDisplay", service.getWordtoDisplay());
+			model.addAttribute("wordToDisplay", service.getWordToDisplay());
 			int chances = service.getChances();
 			model.addAttribute("chances", chances);
 			return "hangmanGame0";
@@ -42,8 +42,7 @@ public class hangmanController {
 	}
 	@RequestMapping("/game")
 	public String game(Model model) {
-		model.addAttribute("word", service.getWord().getWord());
-		model.addAttribute("wordToDisplay", service.getWordtoDisplay());
+		model.addAttribute("wordToDisplay", service.getWordToDisplay());
 		int chances = service.getChances();
 		model.addAttribute("chances", chances);
 		if(chances == 0) {
@@ -62,7 +61,7 @@ public class hangmanController {
 		return "redirect:/game";
 	}
 	@RequestMapping("/returnHome")
-	public String changeWord() {
+	public String returnHome() {
 		return "redirect:/";
 	}
 }

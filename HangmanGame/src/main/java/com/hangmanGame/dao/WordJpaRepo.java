@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import com.hangmanGame.model.Word;
 
 public interface WordJpaRepo extends JpaRepository<Word, Integer> {
-	@Query("Select w from Word w order by rand() ")
-    public List<Word> getRandomField();
+	@Query(value = "SELECT * FROM word_database.word order by rand() limit 1", nativeQuery=true)
+    public Word getRandomField();
 }
